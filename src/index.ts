@@ -125,7 +125,7 @@ if(Bun.argv.length > 2) {
     cliSettings.push({key: 'decode', flags: ['-d', '--decode'], consumeNext: true });
     cliSettings.push({key: 'encode', flags: ['-e', '--encode'], consumeNext: true });
     cliSettings.push({key: 'create', flags: ['-c', '--create'], consumeNext: true });
-    cliSettings.push({key: 'apply', flags: ['-a', '--apply'], consumeNext: true });
+    cliSettings.push({key: 'apply', flags: ['-a', '--apply'], consumeNext: false });
     cliSettings.push({key: 'firefox', flags: ['-f', '--firefox'], consumeNext: true });
     const result: Result<FlagResult[]> = cli(cliSettings, Bun.argv.slice(2));
     if(result.value instanceof Error) {
@@ -159,24 +159,18 @@ if(Bun.argv.length > 2) {
             const file: BunFile = Bun.file(filePath);
             const colorJson = await file.json();
             const themeJson = createTheme(colorJson); 
-            console.log(await encode(themeJson));
-        }
-        const applyFlag: FlagResult | undefined = result.value.find(v => v.key === 'apply'); 
-        if(applyFlag) {
-            const filePath: string | null = applyFlag.value;
-            if(!filePath) {
-                throw new Error('No file path');
+            const createdTheme: string = await encode(themeJson); 
+            const applyFlag: FlagResult | undefined = result.value.find(v => v.key === 'apply'); 
+            if(!applyFlag) {
+                console.log(createdTheme);
+            } else {
+                const firefoxFlag: FlagResult | undefined = result.value.find(v => v.key === 'firefox'); 
+                let firefoxCommand: string = 'firefox';
+                if(firefoxFlag && firefoxFlag.value) {
+                    firefoxCommand = firefoxFlag.value;
+                }
+                Bun.spawn([firefoxCommand, `https://color.firefox.com?theme=${createdTheme}`]);
             }
-            const file: BunFile = Bun.file(filePath);
-            const colorJson = await file.json();
-            const themeJson = createTheme(colorJson); 
-            const createdTheme: string = await encode(themeJson);
-            const firefoxFlag: FlagResult | undefined = result.value.find(v => v.key === 'firefox'); 
-            let firefoxCommand: string = 'firefox';
-            if(firefoxFlag && firefoxFlag.value) {
-                firefoxCommand = firefoxFlag.value;
-            }
-            Bun.spawn([firefoxCommand, `https://color.firefox.com?theme=${createdTheme}`]);
         }
     }
 }

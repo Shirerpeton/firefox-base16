@@ -30,10 +30,10 @@ export function cli(settings: CliSetting[], args: string[]): Result<FlagResult[]
                         result.value = new Error(`Not enough arguments. Flag ${flag} expects another argument afterwards`);
                         return result;
                     }
-                    valueResult.push(flagResult);
-                    matched = true;
-                    break;
                 }
+                valueResult.push(flagResult);
+                matched = true;
+                break;
             }
         }
         if(!matched) {
