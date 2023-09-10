@@ -59,10 +59,8 @@ const decode = async (str: string): Promise<string> => {
     const unpacked = unpack(decompressed); 
     console.log(unpacked.constructor.name);
     if(unpacked instanceof Buffer) {
-        console.log('aaa');
         return unpacked.toString('utf8');
     } else {
-        console.log('bbb');
         return JSON.stringify(unpacked);
     }
 };
