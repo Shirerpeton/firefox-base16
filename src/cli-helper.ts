@@ -23,7 +23,6 @@ export function cli(settings: CliSetting[], args: string[]): Result<FlagResult[]
             if(setting.flags.includes(flag)) {
                 const flagResult: FlagResult = { key: setting.key, value: null };
                 if(setting.consumeNext) {
-                    console.log(args.length);
                     if(args.length > i + 1) {
                         flagResult.value = args[i + 1];
                         i++;
