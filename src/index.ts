@@ -100,19 +100,29 @@ const createTheme = (colorJson: any) => {
           tabLineColor = hexToRgb(colorJson["base02"]),
           popupColor = hexToRgb(colorJson["base02"]),
           popupTextColor = hexToRgb(colorJson["base07"]);
+    const base00 = hexToRgb(colorJson["base00"]);
+    const base01 = hexToRgb(colorJson["base01"]);
+    const base02 = hexToRgb(colorJson["base02"]);
+    const base03 = hexToRgb(colorJson["base03"]);
+    const base04 = hexToRgb(colorJson["base04"]);
+    const base05 = hexToRgb(colorJson["base05"]);
+    const base06 = hexToRgb(colorJson["base06"]);
+    const base07 = hexToRgb(colorJson["base07"]);
 
     const json: string = `{
             "colors": { 
-                "toolbar": ${rgbColorToString(toolbarColor)},
-                "toolbar_text": ${rgbColorToString(toolbarTextColor)},
-                "frame": ${rgbColorToString(toolbarColor)},
-                "accentcolor": ${rgbColorToString(accentColor)},
-                "textcolor": ${rgbColorToString(textColor)},
-                "toolbar_field": ${rgbColorToString(toolbarFieldColor)},
-                "toolbar_field_text": ${rgbColorToString(toolbarFieldTextColor)},
-                "tab_line": ${rgbColorToString(tabLineColor)},
-                "popup": ${rgbColorToString(popupColor)},
-                "popup_text": ${rgbColorToString(popupTextColor)}
+                "toolbar": ${rgbColorToString(base00)},
+                "toolbar_text": ${rgbColorToString(base07)},
+                "frame": ${rgbColorToString(base01)},
+                "accentcolor": ${rgbColorToString(base03)},
+                "textcolor": ${rgbColorToString(base04)},
+                "toolbar_field": ${rgbColorToString(base01)},
+                "toolbar_field_text": ${rgbColorToString(base07)},
+                "tab_line": ${rgbColorToString(base02)},
+                "popup": ${rgbColorToString(base02)},
+                "popup_text": ${rgbColorToString(base05)},
+                "ntp_background": ${rgbColorToString(base00)},
+                "ntp_text": ${rgbColorToString(base05)}
             },
             "images": {
                 "additional_backgrounds": [],
