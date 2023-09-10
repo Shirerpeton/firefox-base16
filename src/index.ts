@@ -57,7 +57,6 @@ const compress = (buffer: Buffer): Promise<Buffer> => {
 const decode = async (str: string): Promise<string> => {
     const decompressed: Buffer = await decompress(Buffer.from(str, 'base64url'));
     const unpacked = unpack(decompressed); 
-    console.log(unpacked.constructor.name);
     if(unpacked instanceof Buffer) {
         return unpacked.toString('utf8');
     } else {
@@ -74,30 +73,20 @@ const encode = async (str: string): Promise<string> => {
 type RgbColor = {
     red: number,
     green: number,
-    blue: number,
-    transparency: number
+    blue: number
 }
 
 const hexToRgb = (hex: string): RgbColor => {
     const red: number = parseInt(hex.slice(1, 3), 16);
     const green: number = parseInt(hex.slice(3, 5), 16);
     const blue: number = parseInt(hex.slice(5, 7), 16);
-    return { red, green, blue, transparency: 1 }
+    return { red, green, blue }
 }
 const rgbColorToString = (rgbColor: RgbColor): string => {
     return `{"r": ${rgbColor.red}, "g": ${rgbColor.green}, "b": ${rgbColor.blue}}`;
 }
 
 const createTheme = (colorJson: any) => {
-    const toolbarColor = hexToRgb(colorJson["base01"]),
-          toolbarTextColor = hexToRgb(colorJson["base07"]),
-          accentColor = hexToRgb(colorJson["base03"]),
-          textColor = hexToRgb(colorJson["base07"]),
-          toolbarFieldColor = hexToRgb(colorJson["base05"]),
-          toolbarFieldTextColor = hexToRgb(colorJson["base02"]),
-          tabLineColor = hexToRgb(colorJson["base02"]),
-          popupColor = hexToRgb(colorJson["base02"]),
-          popupTextColor = hexToRgb(colorJson["base07"]);
     const base00 = hexToRgb(colorJson["base00"]);
     const base01 = hexToRgb(colorJson["base01"]);
     const base02 = hexToRgb(colorJson["base02"]);
@@ -146,7 +135,7 @@ if(Bun.argv.length > 2) {
             if(!encodedStr) {
                 throw new Error('No string to decode');
             }
-            console.log('encoded value:');
+            console.log('decoded value:');
             const decodedStr = await decode(encodedStr); 
             console.log(decodedStr);
         }
@@ -172,4 +161,3 @@ if(Bun.argv.length > 2) {
         }
     }
 }
-
