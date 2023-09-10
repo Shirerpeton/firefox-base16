@@ -10,7 +10,7 @@ This is a simple TS script which allows to decode, encode and create themes for 
 4. -a, --apply: used with the previous command, to open link with the created theme in firefox immediately
 5. -f, --firefox: used with previous two commands, allows to specify command for running firefox instead of using default one ('firefox'). Useful for firefox-developer-edition users.
 
-Generation of the appropriate json file with base16 colors for any base16 theme could be automated by [flavours](https://github.com/Misterio77/flavours), appropriate template for it could be taken [here](https://github.com/Shirerpeton/dotfiles/tree/main/.local/share/flavours/base16/templates/firefox-base16/templates) and flavours configuration with hook could be seen [here](https://github.com/Shirerpeton/dotfiles/blob/main/.config/flavours/config.toml#L49).
+Generation of the appropriate json file with base16 colors for any base16 theme could be automated by [flavours](https://github.com/Misterio77/flavours), appropriate template for it could be taken [here](https://github.com/Shirerpeton/dotfiles/tree/main/.local/share/flavours/base16/templates/firefox-base16/templates) and flavours configuration with hook could be seen [here](https://github.com/Shirerpeton/dotfiles/blob/main/.config/flavours/config.toml#L46)
 
 
 ## Usage
