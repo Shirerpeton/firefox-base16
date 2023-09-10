@@ -1,0 +1,17 @@
+{
+  "name": "firefox-base16",
+  "module": "./src/index.ts",
+  "type": "module",
+  "devDependencies": {
+    "bun-types": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "msgpackr": "^1.9.9"
+  },
+  "scripts": {
+    "start": "bun ./src/index.ts"
+  }
+}
